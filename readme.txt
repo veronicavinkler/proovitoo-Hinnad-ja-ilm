@@ -4,11 +4,24 @@ Luua Magento 2 keskkond koos Alokai OS (endine Vue Storefront) front-end lahendu
 Eesmärk on hinnata kandidaatide infopädevust, oskust kiiresti omandada uusi tehnoloogiaid, kasutada tehisintellekti töö kiirendamiseks ning teha arendust versioonihalduse ja koostöö reegleid järgides. 
 Töö käigus saab kandidaat hinnata kas antud tehnoloogiatega töötamine võiks neile sobida.
 
+
 1. Ülesande esimene osa: Magneto + Alokai/Vue storefront (open source) install
 Eesmärk: panna püsti toimiv Magento 2 keskkond koos Alokai front-endiga.
-
 Tegevused:
-  1. Paigalda Magento 2 ja Alokai (endise Vue Storefronti) arenduskeskkond. 
+
+  1. Paigalda Magento 2 ja Alokai (endise Vue Storefronti) arenduskeskkond.
+Magneto 2 paigaldamiseks jälgiti juhiseid lehel: https://www.mageplaza.com/devdocs/how-install-magento-2-windows.html
+Magneto 2 allalaadimiseks pidi tegema 4 sammu:
+  *Esimene oli  XAMPP installimine Windows jaoks. XAMPP laadimise käigus leidsin, et php polnud lisatud enviromental variables path-ile, seega lisasin selle.
+  *Teine samm oli Composer allalaadimine, mis oli valikuline, seega seda ma ei teinud.
+  *Kolmas samm oli Magento 2 Pack allalaadimine.
+  *Neljas samm oli Magento 2 installimine. Selleks pidi minema aadressile http://localhost/magento2 siis oli võimalik alustada installimise protsessiga. Esialgul aadressile minnes anti teade Unable to connect.
+
+Vea eemaldamiseks sisestasin juhtnööride saamiseks ChatGPT-sse küsimuse: "Tere, üritasin installida Magento 2, selleks sisestasin brauserisse http://localhost/magento2, kuid sain vastuseks "Unable to connect", mis selleks põhjuseks võib olla, kas on alternatiive kuidas aadressile ligipääseda. Magneto2 asub arvutis aadressil C:\XAMPP\htdocs\magento2 (extractitud). Kas on võimalik, et olen laadimisel tähtsa sammu ka vahele jätnud?"
+Vastuseks sain, et ilmselt on vea põhjuseks veebiserveri (Apache) mitte aktiivsus. Juhiste järgi avasin XAMPP Control Panel ja jooksin Apache mooduli. Sain vea teate: Error: Apache shutdown unexpectedly.
+Kõigepealt kontrollisin GPT juhisel portide 80 ja 443 hõivatust cmd-s käskude: "netstat -ano | findstr :80" ja "netstat -ano | findstr :443" abil. Port 80 oli vaba ja 443 hõivatud. Lahenduseks läksin faili httpd-ssl.conf, ning rea Listen 443 tuli muuta "Listen 4443" (post oli vaja muuta).
+
+
   2.Kasuta versioonihaldust: kogu töö peab olema GitHubis avalik repo (või  privaatne, kui ligipääs antakse hindajatele).
   3. Jaga commit'e väikesteks sammudeks. Iga commit peab kirjeldama täpselt tehtud muudatust.
   4. Eelista GitHubi töövoogu, kus iga suurem muudatus käib läbi pull request’i.
