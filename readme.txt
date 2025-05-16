@@ -22,6 +22,20 @@ Vastuseks sain, et ilmselt on vea põhjuseks veebiserveri (Apache) mitte aktiivs
 Kõigepealt kontrollisin GPT juhisel portide 80 ja 443 hõivatust cmd-s käskude: "netstat -ano | findstr :80" ja "netstat -ano | findstr :443" abil. Port 80 oli vaba ja 443 hõivatud. Lahenduseks läksin faili httpd-ssl.conf, ning rea Listen 443 tuli muuta "Listen 4443" (post oli vaja muuta).
 Kuna viga ei olnud võimalik eemaldada pärast pikkasid dialooge ChatGPT ja Gemini AI-ga otsustasin kõik installitud eemaldada ja luua virtuaal masina VirtualBox kasutades OS Ubuntuga, kuna antud operatsioonisüsteemil on Magneto 2 ametlikult toetatud.
 Kõigepealt oli vaja laadida dependecies: php, mysql (samuti ametlikult toetatud andmebaas), mysql extensions, composer. Need sai laetud terminali kaudu.
+MySQL laadimise käsklused:
+sudo apt update
+sudo apt install mysql-server
+
+Magneto 2 allalaadimine:
+sudo apt install composer
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition magento2
+
+Pärast antud käsklust pidi audentima ennast ning adoble marketplace lehel genereerima access keys ja sisestama need username ja parooli.
+cd magento2
+sudo chown -R :www-data .
+sudo find . -type d -exec chmod 770 {} \;
+sudo find . -type f -exec chmod 660 {} \;
+
 
   2.Kasuta versioonihaldust: kogu töö peab olema GitHubis avalik repo (või  privaatne, kui ligipääs antakse hindajatele).
   3. Jaga commit'e väikesteks sammudeks. Iga commit peab kirjeldama täpselt tehtud muudatust.
