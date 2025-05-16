@@ -43,6 +43,13 @@ GRANT ALL PRIVILEGES ON magento.* TO 'magento_user'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
 
+Uuesti directory loomine magento jaoks: sudo mkdir -p /var/www/html/magento2
+Lubade andmine:
+sudo chown -R www-data:www-data /var/www/html/magento2
+sudo find /var/www/html/magento2 -type d -exec chmod 755 {} \;
+sudo find /var/www/html/magento2 -type f -exec chmod 644 {} \;
+
+
   2.Kasuta versioonihaldust: kogu töö peab olema GitHubis avalik repo (või  privaatne, kui ligipääs antakse hindajatele).
   3. Jaga commit'e väikesteks sammudeks. Iga commit peab kirjeldama täpselt tehtud muudatust.
   4. Eelista GitHubi töövoogu, kus iga suurem muudatus käib läbi pull request’i.
