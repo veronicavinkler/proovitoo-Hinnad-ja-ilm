@@ -49,6 +49,22 @@ sudo chown -R www-data:www-data /var/www/html/magento2
 sudo find /var/www/html/magento2 -type d -exec chmod 755 {} \;
 sudo find /var/www/html/magento2 -type f -exec chmod 644 {} \;
 
+Virtuaalse hosti konfiguratsioon: sudo nano /etc/apache2/sites-available/magento2.conf
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/magento2
+    ServerName alokai.local  # Use a custom domain or your server's IP address
+
+    <Directory /var/www/html/magento2>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
 
   2.Kasuta versioonihaldust: kogu töö peab olema GitHubis avalik repo (või  privaatne, kui ligipääs antakse hindajatele).
   3. Jaga commit'e väikesteks sammudeks. Iga commit peab kirjeldama täpselt tehtud muudatust.
