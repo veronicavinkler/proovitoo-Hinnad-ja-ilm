@@ -36,6 +36,12 @@ sudo chown -R :www-data .
 sudo find . -type d -exec chmod 770 {} \;
 sudo find . -type f -exec chmod 660 {} \;
 
+Mysql setup:
+CREATE DATABASE magento;
+CREATE USER 'magento_user'@'localhost' IDENTIFIED BY 'your_password';
+GRANT ALL PRIVILEGES ON magento.* TO 'magento_user'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
 
   2.Kasuta versioonihaldust: kogu töö peab olema GitHubis avalik repo (või  privaatne, kui ligipääs antakse hindajatele).
   3. Jaga commit'e väikesteks sammudeks. Iga commit peab kirjeldama täpselt tehtud muudatust.
