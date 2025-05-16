@@ -20,8 +20,8 @@ Magneto 2 allalaadimiseks pidi tegema 4 sammu:
 Vea eemaldamiseks sisestasin juhtnööride saamiseks ChatGPT-sse küsimuse: "Tere, üritasin installida Magento 2, selleks sisestasin brauserisse http://localhost/magento2, kuid sain vastuseks "Unable to connect", mis selleks põhjuseks võib olla, kas on alternatiive kuidas aadressile ligipääseda. Magneto2 asub arvutis aadressil C:\XAMPP\htdocs\magento2 (extractitud). Kas on võimalik, et olen laadimisel tähtsa sammu ka vahele jätnud?"
 Vastuseks sain, et ilmselt on vea põhjuseks veebiserveri (Apache) mitte aktiivsus. Juhiste järgi avasin XAMPP Control Panel ja jooksin Apache mooduli. Sain vea teate: Error: Apache shutdown unexpectedly.
 Kõigepealt kontrollisin GPT juhisel portide 80 ja 443 hõivatust cmd-s käskude: "netstat -ano | findstr :80" ja "netstat -ano | findstr :443" abil. Port 80 oli vaba ja 443 hõivatud. Lahenduseks läksin faili httpd-ssl.conf, ning rea Listen 443 tuli muuta "Listen 4443" (post oli vaja muuta).
-Kuna viga ei olnud võimalik eemaldada pärast pikkasid dialooge ChatGPT ja Gemini AI-ga otsustasin kõik installitud eemaldada ja luua virtuaal masina VirtualBox kasutades OS Ubuntuga, kuna antud operatsioonisüsteemil on Magneto 2 officiali tagatud.
-
+Kuna viga ei olnud võimalik eemaldada pärast pikkasid dialooge ChatGPT ja Gemini AI-ga otsustasin kõik installitud eemaldada ja luua virtuaal masina VirtualBox kasutades OS Ubuntuga, kuna antud operatsioonisüsteemil on Magneto 2 ametlikult toetatud.
+Kõigepealt oli vaja laadida dependecies: php, mysql (samuti ametlikult toetatud andmebaas). Need sai laetud terminali kaudu.
 
   2.Kasuta versioonihaldust: kogu töö peab olema GitHubis avalik repo (või  privaatne, kui ligipääs antakse hindajatele).
   3. Jaga commit'e väikesteks sammudeks. Iga commit peab kirjeldama täpselt tehtud muudatust.
