@@ -65,6 +65,10 @@ Virtuaalse hosti konfiguratsioon: sudo nano /etc/apache2/sites-available/magento
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 
+Pärast faili muutmist CTRL + O, Enter ja CTRL + X.
+Enable the new site: sudo a2ensite magento2.conf
+Ensure that the Apache rewrite module is enabled: sudo a2enmod rewrite
+Restart the Apache server to apply the changes: sudo systemctl restart apache2
 
   2.Kasuta versioonihaldust: kogu töö peab olema GitHubis avalik repo (või  privaatne, kui ligipääs antakse hindajatele).
   3. Jaga commit'e väikesteks sammudeks. Iga commit peab kirjeldama täpselt tehtud muudatust.
