@@ -20,8 +20,55 @@ Magneto 2 allalaadimiseks pidi tegema 4 sammu:
 Vea eemaldamiseks sisestasin juhtnööride saamiseks ChatGPT-sse küsimuse: "Tere, üritasin installida Magento 2, selleks sisestasin brauserisse http://localhost/magento2, kuid sain vastuseks "Unable to connect", mis selleks põhjuseks võib olla, kas on alternatiive kuidas aadressile ligipääseda. Magneto2 asub arvutis aadressil C:\XAMPP\htdocs\magento2 (extractitud). Kas on võimalik, et olen laadimisel tähtsa sammu ka vahele jätnud?"
 Vastuseks sain, et ilmselt on vea põhjuseks veebiserveri (Apache) mitte aktiivsus. Juhiste järgi avasin XAMPP Control Panel ja jooksin Apache mooduli. Sain vea teate: Error: Apache shutdown unexpectedly.
 Kõigepealt kontrollisin GPT juhisel portide 80 ja 443 hõivatust cmd-s käskude: "netstat -ano | findstr :80" ja "netstat -ano | findstr :443" abil. Port 80 oli vaba ja 443 hõivatud. Lahenduseks läksin faili httpd-ssl.conf, ning rea Listen 443 tuli muuta "Listen 4443" (post oli vaja muuta).
-Kuna viga ei olnud võimalik eemaldada pärast pikkasid dialooge ChatGPT ja Gemini AI-ga otsustasin kõik installitud eemaldada ja luua virtuaal masina VirtualBox kasutades OS Ubuntuga, kuna antud operatsioonisüsteemil on Magneto 2 officiali tagatud.
+Kuna viga ei olnud võimalik eemaldada pärast pikkasid dialooge ChatGPT ja Gemini AI-ga otsustasin kõik installitud eemaldada ja luua virtuaal masina VirtualBox kasutades OS Ubuntuga, kuna antud operatsioonisüsteemil on Magneto 2 ametlikult toetatud.
+Kõigepealt oli vaja laadida dependecies: php, mysql (samuti ametlikult toetatud andmebaas), mysql extensions, composer. Need sai laetud terminali kaudu.
+MySQL laadimise käsklused:
+sudo apt update
+sudo apt install mysql-server
 
+Magneto 2 allalaadimine:
+sudo apt install composer
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition magento2
+
+Pärast antud käsklust pidi audentima ennast ning adoble marketplace lehel genereerima access keys ja sisestama need username ja parooli.
+cd magento2
+sudo chown -R :www-data .
+sudo find . -type d -exec chmod 770 {} \;
+sudo find . -type f -exec chmod 660 {} \;
+
+Mysql setup:
+CREATE DATABASE magento;
+CREATE USER 'magento_user'@'localhost' IDENTIFIED BY 'your_password';
+GRANT ALL PRIVILEGES ON magento.* TO 'magento_user'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+
+Uuesti directory loomine magento jaoks: sudo mkdir -p /var/www/html/magento2
+Lubade andmine:
+sudo chown -R www-data:www-data /var/www/html/magento2
+sudo find /var/www/html/magento2 -type d -exec chmod 755 {} \;
+sudo find /var/www/html/magento2 -type f -exec chmod 644 {} \;
+
+Virtuaalse hosti konfiguratsioon: sudo nano /etc/apache2/sites-available/magento2.conf
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/magento2
+    ServerName alokai.local  # Use a custom domain or your server's IP address
+
+    <Directory /var/www/html/magento2>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+Pärast faili muutmist CTRL + O, Enter ja CTRL + X.
+Enable the new site: sudo a2ensite magento2.conf
+Ensure that the Apache rewrite module is enabled: sudo a2enmod rewrite
+Restart the Apache server to apply the changes: sudo systemctl restart apache2
 
   2.Kasuta versioonihaldust: kogu töö peab olema GitHubis avalik repo (või  privaatne, kui ligipääs antakse hindajatele).
   3. Jaga commit'e väikesteks sammudeks. Iga commit peab kirjeldama täpselt tehtud muudatust.
