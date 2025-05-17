@@ -70,6 +70,11 @@ Enable the new site: sudo a2ensite magento2.conf
 Ensure that the Apache rewrite module is enabled: sudo a2enmod rewrite
 Restart the Apache server to apply the changes: sudo systemctl restart apache2
 
+Magento 2 installimiseks oli vaja veebibrauseril minna aadressile alokai.local. Kuna algselt ei saanud süsteem aru, et alokai.local viitab Ubuntu virtuaalmasina IP-aadressile, siis Google Gemini kohaselt peab muutma hosti faili.
+Windowsil pidi avama faili C:\Windows\System32\drivers\etc\hosts administraatori õigustega Notepadis ja lisa faili lõppu rea 127.0.0.1 alokai.local. Seejärel salvestama.
+
+Samuti Ubuntus avama terminali ja redigeeri faili /etc/hosts kasutades käsku sudo nano /etc/hosts ja faili lõppu lisama rea 127.0.0.1 alokai.local ning salvestama.
+
   2.Kasuta versioonihaldust: kogu töö peab olema GitHubis avalik repo (või  privaatne, kui ligipääs antakse hindajatele).
   3. Jaga commit'e väikesteks sammudeks. Iga commit peab kirjeldama täpselt tehtud muudatust.
   4. Eelista GitHubi töövoogu, kus iga suurem muudatus käib läbi pull request’i.
