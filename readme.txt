@@ -1,9 +1,4 @@
-Proovitöö FE/BE kevad 2025
-
-Luua Magento 2 keskkond koos Alokai OS (endine Vue Storefront) front-end lahendusega (Vue Storefront 2).
-Eesmärk on hinnata kandidaatide infopädevust, oskust kiiresti omandada uusi tehnoloogiaid, kasutada tehisintellekti töö kiirendamiseks ning teha arendust versioonihalduse ja koostöö reegleid järgides. 
-Töö käigus saab kandidaat hinnata kas antud tehnoloogiatega töötamine võiks neile sobida.
-
+Proovitöö FE/BE
 
 1. Ülesande esimene osa: Magneto + Alokai/Vue storefront (open source) install
 Eesmärk: panna püsti toimiv Magento 2 keskkond koos Alokai front-endiga.
