@@ -1,11 +1,5 @@
 Proovitöö FE/BE
 
-1. Ülesande esimene osa: Magneto + Alokai/Vue storefront (open source) install
-Eesmärk: panna püsti toimiv Magento 2 keskkond koos Alokai front-endiga.
-Tegevused:
-
-  1. Paigalda Magento 2 ja Alokai (endise Vue Storefronti) arenduskeskkond.
-Magneto 2 paigaldamiseks jälgiti juhiseid lehel: https://www.mageplaza.com/devdocs/how-install-magento-2-windows.html
 Magneto 2 allalaadimiseks pidi tegema 4 sammu:
   *Esimene oli  XAMPP installimine Windows jaoks. XAMPP laadimise käigus leidsin, et php polnud lisatud enviromental variables path-ile, seega lisasin selle.
   *Teine samm oli Composer allalaadimine, mis oli valikuline, seega seda ma ei teinud.
