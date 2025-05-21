@@ -10,27 +10,3 @@ Vea eemaldamiseks sisestasin juhtnööride saamiseks ChatGPT-sse küsimuse: "Ter
 Vastuseks sain, et ilmselt on vea põhjuseks veebiserveri (Apache) mitte aktiivsus. Juhiste järgi avasin XAMPP Control Panel ja jooksin Apache mooduli. Sain vea teate: Error: Apache shutdown unexpectedly.
 Kõigepealt kontrollisin GPT juhisel portide 80 ja 443 hõivatust cmd-s käskude: "netstat -ano | findstr :80" ja "netstat -ano | findstr :443" abil. Port 80 oli vaba ja 443 hõivatud. Lahenduseks läksin faili httpd-ssl.conf, ning rea Listen 443 tuli muuta "Listen 4443" (post oli vaja muuta).
 Kuna viga ei olnud võimalik eemaldada pärast pikkasid dialooge ChatGPT ja Gemini AI-ga otsustasin kõik installitud eemaldada ja luua virtuaal masina VirtualBox kasutades OS Ubuntuga, kuna antud operatsioonisüsteemil on Magneto 2 officiali tagatud.
-
-
-  2.Kasuta versioonihaldust: kogu töö peab olema GitHubis avalik repo (või  privaatne, kui ligipääs antakse hindajatele).
-  3. Jaga commit'e väikesteks sammudeks. Iga commit peab kirjeldama täpselt tehtud muudatust.
-  4. Eelista GitHubi töövoogu, kus iga suurem muudatus käib läbi pull request’i.
-  5. Kasuta AI tööriista (nt ChatGPT või mõnda muud) abi paigalduse juures. Ole valmis jagama oma AI prompt’e ja põhjendama nende kasutamist.
-  6. Lisapunkte annab: paned VUE Storefront 2-e suhtlema läbi vahevara elastic-ga. Custom API Endpoint (Middleware) - NUXT3 vms peal.
-
-2. Back-End arendaja suund: Hinnad ja ilm
-Eesmärk: luua Magento 2 moodul, mis:
-  1. kasutab ilmateate API't,
-  2. muudab tooteinfot Magento-s dünaamiliselt sõltuvalt ilmast (vali ise, soovitatav hind)
-
-3. Versioonihaldus ja tehniline dokumentatsioon
-  1. Kasuta GitHubi või mõnda muud Git-teenust.
-  2. Hoia commit'e loogilises jaotuses.
-  3. Lisa README fail, mis kirjeldab:
-    3.1. kuidas lahendus tööle panna,
-    3.2. millised AI prompt’id kasutati ja miks,
-    3.3. kas esines probleeme ja kuidas neid lahendati.
-
-
-
-
